@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+  <item queryId="name 11">
+    <id>1</id>
+    <name>name 1</name>
+    <data><![CDATA[123456]]></data>
+  </item>
+  <item queryId="name 22">
+    <id>2</id>
+    <name>name 2</name>
+    <data><![CDATA[abc]]></data>
+  </item>
+</items>
