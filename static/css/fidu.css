@@ -1,10 +1,10 @@
 body{font-size:12px; font-family:微软雅黑; padding:0; margin:0;}
-textarea { font-family:'微软雅黑';}
-.dataTable {height:300px; width:600px;font-family: Arial,Helvetica,sans-serif;font-size: 13px;line-height: 1.3em;position: relative;overflow: scroll; }
-.ui-tabs{ width:648px;  }
+textarea { font-family:微软雅黑;}
+.dataTable {height:300px; font-family: Arial,Helvetica,sans-serif;font-size: 13px;line-height: 1.3em;position: relative;overflow: scroll; }
+.ui-tabs{   }
 .ui-tabs .ui-tabs-panels-wrap{ position:relative;height:344px;overflow:hidden;}
 .ui-tabs .ui-tabs-panels{ position:absolute; border-bottom:none; top:0; left:0;}
-.ui-tabs .ui-tabs-panel{ padding:20px; border:4px solid #ddd;height:300px; width:600px; }
+.ui-tabs .ui-tabs-panel{ padding:20px; border:4px solid #ddd;height:300px; }
 .ui-tabs .ui-tabs-nav{ padding:0; margin:0; list-style:none; height:24px; font-size:0; border-top:4px solid #ddd;}
 .ui-tabs .ui-tabs-nav dd.ui-state-default{margin:0 10px 0 0 ; list-style:none; background:none; line-height:24px; font-size:12px; display:inline-block;margin-top:-4px; border:none;}
 .ui-tabs .ui-tabs-nav dd.ui-state-default a{border:4px solid #eee;border-top:none; display:block;padding:0 15px;  line-height:16px;  color:#666;text-decoration: none;}

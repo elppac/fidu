@@ -244,9 +244,9 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 				nav = element.find('.ui-state-default'),
 				itemHeight = panel.outerHeight(),
 				itemWidth = panel.outerWidth(),
-				count = nav.length;
-			
-			panels.css('width',itemWidth);
+				count = nav.length,
+				windowWidth = $(window).width();
+			panels.css('width',windowWidth);
 			panels.css('height',itemHeight*count);
 			
 			nav.each(function(index,item){

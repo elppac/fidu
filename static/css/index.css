@@ -1,0 +1,154 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: arial,'微软雅黑';
+    padding: 10px;
+    color: #333;
+    font-size: 12px;
+    line-height: 1.4em;
+    min-width: 600px;-webkit-text-size-adjust:none; 
+}
+
+#wpwrap {
+    height: auto;
+    min-height: 100%;
+    position: relative;
+    width: 100%;
+}
+#wpbody-content {
+    padding-bottom: 20px;
+    float: left;
+    width: 100%;
+}
+.wrap {
+    margin: 4px 15px 0 0;
+}
+.wrap h2 {
+    font-size: 23px;
+    line-height: 29px;
+    padding: 9px 15px 4px 0;
+    font-weight: normal;
+    margin: 0;
+    text-shadow: 0 1px 0 #eee;
+}
+
+
+
+#plupload-upload-ui {
+    position: relative;
+}
+.drag-drop #drag-drop-area {
+    border: 4px dashed #DDDDDD;
+    height: 200px;
+}
+.drag-drop.drag-over #drag-drop-area {
+    border-color: #83B4D8;
+}
+.drag-drop .drag-drop-inside {
+    margin: 70px auto 0;
+    width: 250px;
+    text-align: center;
+}
+.drag-drop-inside p.drag-drop-info {
+    font-size: 20px;
+    margin: 5px 0;
+    color: #aaa;
+}
+
+.submit input, .button, input.button {
+    -moz-box-sizing: content-box;
+    border-radius: 11px 11px 11px 11px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    font-size: 12px !important;
+    line-height: 13px;
+    padding: 6px 10px;
+    text-decoration: none;
+    position: relative;
+    z-index: 0;
+}
+.button, .submit input, input[type="button"], input[type="submit"] {
+    border-color: #bbb;
+    color: #666;
+}
+.button:hover, .submit input:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    border-color: #666;
+    color: #333;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+.textarea {
+    -moz-box-sizing: border-box;
+    border: 1px solid #ddd;
+    height: 200px;
+    outline: medium none;
+    padding: 0;
+    width: 99%;font-family: arial,'微软雅黑'; font-size:11px;
+}
+
+#media-items{
+	width:50%;
+}
+#media-items .media-item {
+    border-style: solid;
+    border-width: 1px;
+    margin-top: -1px;
+    min-height: 36px;
+    position: relative;
+    width: 100%;
+    border-color: #DFDFDF;
+}
+
+.media-item .progress {
+    background: -moz-linear-gradient(center bottom , #FFFFFF 0px, #F7F7F7 100%) repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1) inset;
+    float: right;
+    height: 22px;
+    line-height: 2em;
+    margin: 6px 10px 2px 0;
+    overflow: hidden;
+    padding: 0;
+    width: 200px;
+}
+.media-item .progress .percent {
+    color: rgba(0, 0, 0, 0.6);
+    padding: 0 8px;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    width: 200px;
+    z-index: 10;
+}
+.media-item .bar {
+    background-color: #83B4D8;
+    background-image:linear-gradient(bottom,#fff 0,#f7f7f7 100%);
+    background-image:-o-linear-gradient(bottom,#fff 0,#f7f7f7 100%);
+    background-image:-moz-linear-gradient(bottom,#fff 0,#f7f7f7 100%);
+    background-image:-webkit-linear-gradient(bottom,#fff 0,#f7f7f7 100%);
+    background-image:-ms-linear-gradient(bottom,#fff 0,#f7f7f7 100%);
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    margin-top: -24px;
+    width: 0;
+    z-index: 9;
+}
+
+
+.media-item .original {
+    height: 34px;
+    position: relative;
+}
+.media-item .filename {
+    line-height: 36px;
+    overflow: hidden;
+    padding: 0 10px;
+}
