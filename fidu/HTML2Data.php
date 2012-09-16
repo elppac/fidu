@@ -17,7 +17,7 @@
 		
 		function _analyzeName( $templateText ){
 			$templateName = str_replace( '##','',$templateText );
-			$arr = split('-',$templateName);
+			$arr = preg_split('/-/',$templateName);
 			$retval = array();
 			$sheetName = $arr[0];
 			return array(

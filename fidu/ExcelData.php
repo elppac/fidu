@@ -88,7 +88,7 @@
 		}
 		
 		function pageCount( $sheet, $pageSize ){
-			return ceil( ($this->numRows( $sheet )+1) / $pageSize );
+			return ceil( ($this->numRows( $sheet )-1) / $pageSize );
 		}
 	}
 ?>

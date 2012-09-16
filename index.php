@@ -29,8 +29,7 @@ var userSettings = {
 	isRtl = 0;
 </script>
 <link rel='stylesheet' href='http://<?php echo $site_path;?>/wp-admin/load-styles.php?c=1&amp;dir=ltr&amp;load=admin-bar,wp-admin&amp;ver=7f0753feec257518ac1fec83d5bced6a' type='text/css' media='all' />
-<link rel='stylesheet' id='zh-cn-l10n-administration-screens-css'  href='http://<?php echo $site_path;?>/wp-content/languages/zh_CN-administration-screens.css?ver=20111120' type='text/css' media='all' />
-<link rel='stylesheet' id='imgareaselect-css'  href='http://<?php echo $site_path;?>/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.1' type='text/css' media='all' />
+
 <link rel='stylesheet' id='colors-css'  href='http://<?php echo $site_path;?>/wp-admin/css/colors-fresh.css?ver=20111206' type='text/css' media='all' />
 <!--[if lte IE 7]>
 <link rel='stylesheet' id='ie-css'  href='http://<?php echo $site_path;?>/wp-admin/css/ie.css?ver=20111130' type='text/css' media='all' />
@@ -53,7 +52,7 @@ height:200px;
 </style>
 <script type='text/javascript'>
 /* <![CDATA[ */
-var pluploadL10n = {"queue_limit_exceeded":"\u60a8\u5411\u961f\u5217\u4e2d\u6dfb\u52a0\u7684\u6587\u4ef6\u8fc7\u591a\u3002","file_exceeds_size_limit":"%s \u8d85\u8fc7\u4e86\u7ad9\u70b9\u7684\u6700\u5927\u4e0a\u4f20\u9650\u5236\u3002","zero_byte_file":"\u6587\u4ef6\u4e3a\u7a7a\uff0c\u8bf7\u9009\u62e9\u5176\u5b83\u6587\u4ef6\u3002","invalid_filetype":"\u4e0d\u5141\u8bb8\u4e0a\u4f20\u8be5\u7c7b\u578b\u7684\u6587\u4ef6\uff0c\u8bf7\u9009\u62e9\u5176\u5b83\u6587\u4ef6\u3002","not_an_image":"\u8be5\u6587\u4ef6\u4e0d\u662f\u56fe\u50cf\uff0c\u8bf7\u4f7f\u7528\u5176\u5b83\u6587\u4ef6\u3002","image_memory_exceeded":"\u8fbe\u5230\u5185\u5b58\u9650\u5236\uff0c\u8bf7\u4f7f\u7528\u5c0f\u4e00\u4e9b\u7684\u6587\u4ef6\u3002","image_dimensions_exceeded":"\u8be5\u6587\u4ef6\u8d85\u8fc7\u4e86\u6700\u5927\u5927\u5c0f\uff0c\u8bf7\u4f7f\u7528\u5176\u5b83\u6587\u4ef6\u3002","default_error":"\u4e0a\u4f20\u65f6\u53d1\u751f\u4e86\u9519\u8bef\u3002\u8bf7\u7a0d\u540e\u518d\u8bd5\u3002","missing_upload_url":"\u914d\u7f6e\u6709\u8bef\u3002\u8bf7\u8054\u7cfb\u60a8\u7684\u670d\u52a1\u5668\u7ba1\u7406\u5458\u3002","upload_limit_exceeded":"\u60a8\u53ea\u80fd\u4e0a\u4f20\u4e00\u4e2a\u6587\u4ef6\u3002","http_error":"HTTP \u9519\u8bef\u3002","upload_failed":"\u4e0a\u4f20\u5931\u8d25\u3002","big_upload_failed":"\u8bf7\u5c1d\u8bd5\u4f7f\u7528%1$s\u6807\u51c6\u7684\u6d4f\u89c8\u5668\u4e0a\u4f20\u5de5\u5177%2$s\u6765\u4e0a\u4f20\u8fd9\u4e2a\u6587\u4ef6\u3002","big_upload_queued":"%s \u8d85\u51fa\u4e86\u60a8\u6d4f\u89c8\u5668\u5bf9\u9ad8\u7ea7\u591a\u6587\u4ef6\u4e0a\u4f20\u5de5\u5177\u6240\u505a\u7684\u5927\u5c0f\u9650\u5236\u3002","io_error":"IO \u9519\u8bef\u3002","security_error":"\u5b89\u5168\u9519\u8bef\u3002","file_cancelled":"\u6587\u4ef6\u5df2\u53d6\u6d88\u3002","upload_stopped":"\u4e0a\u4f20\u505c\u6b62\u3002","dismiss":"\u4e0d\u518d\u663e\u793a","crunching":"\u5904\u7406\u4e2d\u2026","deleted":"\u79fb\u52a8\u5230\u56de\u6536\u7ad9\u3002","error_uploading":"\u201c%s\u201d\u4e0a\u4f20\u5931\u8d25\u3002"};/* ]]> */
+var pluploadL10n = {"queue_limit_exceeded":"您向队列中添加的文件过多。","file_exceeds_size_limit":"%s 超过了站点的最大上传限制。","zero_byte_file":"文件为空，请选择其它文件。","invalid_filetype":"不允许上传该类型的文件，请选择其它文件。","not_an_image":"该文件不是图像，请使用其它文件。","image_memory_exceeded":"达到内存限制，请使用小一些的文件。","image_dimensions_exceeded":"该文件超过了最大大小，请使用其它文件。","default_error":"上传时发生了错误。请稍后再试。","missing_upload_url":"配置有误。请联系您的服务器管理员。","upload_limit_exceeded":"您只能上传一个文件。","http_error":"HTTP 错误。","upload_failed":"上传失败。","big_upload_failed":"请尝试使用%1$s标准的浏览器上传工具%2$s来上传这个文件。","big_upload_queued":"%s 超出了您浏览器对高级多文件上传工具所做的大小限制。","io_error":"IO 错误。","security_error":"安全错误。","file_cancelled":"文件已取消。","upload_stopped":"上传停止。","dismiss":"不再显示","crunching":"上传完成，请选择相应的处理","deleted":"移动到回收站。","error_uploading":"“%s”上传失败。"};/* ]]> */
 </script>
 <script type='text/javascript' src='http://<?php echo $site_path;?>/wp-admin/load-scripts.php?c=1&amp;load=jquery,utils,plupload,plupload-html5,plupload-flash,plupload-silverlight,plupload-html4,plupload-handlers,json2&amp;ver=dbcc2d917a7e14bbe292c26bb476a7f4'></script>
  
@@ -63,14 +62,14 @@ var pluploadL10n = {"queue_limit_exceeded":"\u60a8\u5411\u961f\u5217\u4e2d\u6dfb
 }
 </style> 
 </head>
-<body class="wp-admin no-js  media-new-php admin-bar branch-3-3 version-3-3-2 admin-color-fresh">
+<body class="no-js">
 <script type="text/javascript">document.body.className = document.body.className.replace('no-js','js');</script>
 <div id="wpwrap">
 	<div id="wpbody">
 		<div id="wpbody-content">
 			<div class="wrap">
 				<h2>Excel数据转换</h2>
-				<form enctype="multipart/form-data" method="post" action="http://<?php echo $site_path;?>/wp-admin/media-upload.php?inline=&amp;upload-page-form=" class="media-upload-form type-form validate" id="file-form">
+				
 					<div id="media-upload-notice"></div>
 					<div id="media-upload-error"></div>
 					<script type="text/javascript">
@@ -101,15 +100,7 @@ var pluploadL10n = {"queue_limit_exceeded":"\u60a8\u5411\u961f\u5217\u4e2d\u6dfb
 						</div>
 						<!--<p class="upload-flash-bypass"> 您正在使用高级多文件上传工具。不能正确上传？请尝试使用<a href="#">标准的浏览器上传工具</a> 。 </p>-->
 					</div>
-					<div id="html-upload-ui" class="hide-if-js">
-						<p id="async-upload-wrap">
-							<label class="screen-reader-text" for="async-upload">上传</label>
-							<input type="file" name="async-upload" id="async-upload" />
-							<input type="submit" name="html-upload" id="html-upload" class="button" value="上传"  />
-							<a href="#" onclick="try{top.tb_remove();}catch(e){}; return false;">取消</a> </p>
-						<div class="clear"></div>
-						<p class="upload-html-bypass hide-if-no-js"> 您正在使用浏览器内置的标准上传工具。WordPress 提供了全新的上传工具，并支持拖放上传功能。<a href="#">改用新的上传工具</a>。 </p>
-					</div>
+					
 					<p class="after-file-upload">文件上传之后，请点击你需要的操作。</p>
 					<script type="text/javascript">
 						jQuery(function($){
@@ -126,7 +117,6 @@ var pluploadL10n = {"queue_limit_exceeded":"\u60a8\u5411\u961f\u5217\u4e2d\u6dfb
 					<div id="media-items" class="hide-if-no-js"></div>
 					 
 					<!--<button class="button" onclick="toHtml(event,'20120628091016-1340845816.xls');">Ajax</button>-->
-				</form>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -157,7 +147,6 @@ var pluploadL10n = {"queue_limit_exceeded":"\u60a8\u5411\u961f\u5217\u4e2d\u6dfb
 			});
 		}
 	</script>
-	<script type='text/javascript' src='http://<?php echo $site_path;?>/wp-admin/load-scripts.php?c=1&amp;load=admin-bar,hoverIntent,common,jquery-color,imgareaselect,image-edit,set-post-thumbnail&amp;ver=97fc4dcc6a74df5da2a5756303474f8a'></script>
 </div>
 <!--<script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
 <script type="text/javascript" src="http://<?php echo $site_path;?>/packer/excel2/static/ZeroClipboard.min.js"></script>
