@@ -53,7 +53,11 @@ class FiduXml{
 	}
 	function getDataLikeJson( $id, $name){
 		$dataString = $this->getData( $id, $name);
+		if( $dataString ==null){
+			return null;
+		}
 		$data = json_decode( $dataString );
+		//print_r($dataString ); 
 		$json = array();
 		foreach( $data as $item ){
 			$json[$item[0]] = $item[1];

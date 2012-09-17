@@ -1,3 +1,7 @@
+<?php
+//获取当前的域名:
+$site_path = $_SERVER['SERVER_NAME'];
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -18,7 +22,7 @@
 		window.addEventListener(
 		'message', 
 		function(e) {
-			if (e.origin == 'http://www.elppa.cn')  {
+			if (e.origin == 'http://<?php echo $site_path?>')  {
 				if( e.data.type == 'moduleInfo' ){
 					if( e.data.data == ''){
 						output.html('未创建');
@@ -33,7 +37,7 @@
 			 }
 		} , false); 
 		//get moduleInfo
-		window.top.postMessage( {type:'moduleInfo'} , 'http://www.elppa.cn' );
+		window.top.postMessage( {type:'moduleInfo'} , 'http://<?php echo $site_path?>' );
 	</script>
  </body>
 </html>

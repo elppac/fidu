@@ -1,5 +1,5 @@
 <?php
-	require_once '../phpExcelReader/Excel/reader.php';
+	require_once 'excelReader/Excel/reader.php';
 	class ExcelData{
 		var $database;
 		var $sheets = array();
@@ -84,7 +84,7 @@
 		}
 		
 		function numRows( $sheet ){
-			return $sheet['numRows'] + 1;
+			return $sheet['numRows'];
 		}
 		
 		function pageCount( $sheet, $pageSize ){

@@ -5,9 +5,8 @@
 	require_once 'fidu/Common.php';
 	require_once 'fidu/FiduXML.php';
 	header('Content-Type: text/html; charset=UTF-8');
-	
-	$action =$_POST['action'];
-	if(isset($action)){
+
+	if(isset($_POST['action'])){
 		JsonToHTML( );
 	}else{
 		ExcelToHTML();

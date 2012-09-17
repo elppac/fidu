@@ -1,9 +1,19 @@
 <?php
+//获取当前的域名:
+$site_path = $_SERVER['SERVER_NAME'];
+
 require_once 'fidu/HTML2Data.php';
+require_once 'fidu/FiduXML.php';
 header('Content-Type: text/html; charset=UTF-8');
 $moduleData =$_POST['module-data'];
 $moduleName =$_POST['module-name'];
 $cmsId =$_POST['cms-id'];
+$error = '';
+if( isset($_POST['action']) && $_POST['action']=="create-config" ){
+	$confVal = $_POST['config-value'];
+	$fiduxml = new FiduXML();
+	$fiduxml->addItem( $cmsId, $moduleName, $confVal  );
+}
 
 $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 ?>
@@ -22,15 +32,13 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 	<link rel="stylesheet" media="screen" href="handsontable/lib/jQuery-contextMenu/jquery.contextMenu.css">
 	<link rel="stylesheet" media="screen" href="handsontable/jquery.handsontable.css">
 	<link rel="stylesheet" media="screen" href="static/css/fidu.css">
-	<style type="text/css">
-	</style>
 </head>
  <body>
 
 	<script> 
-		var json = <?php echo $html2data->toData();?>
-
+		var json = <?php echo $html2data->toData();?>;
 	</script>
+	<h1 id="title-h1"></h1>
 	<div class="ui-tabs ui-green" id="tabs">
 		<div class="ui-tabs-panels-wrap">
 			<div class="ui-tabs-panels">
@@ -39,25 +47,35 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 		<dl class="ui-tabs-nav">
 		</dl>
 	</div>
-	<div class="ctrl"></div>
+	<div class="ctrl"><button id="btn-save">Save</button></div>
 	<form action="fidu-bus.php" id="excelForm">
 		<input type="hidden" name="tableData" id="table-data" />
 		<input type="hidden" name="tableName" id="table-name" />
 		<input type="hidden" name="table" id="table" />
 		<input type="hidden" name="action" id="action" value="savedata" />
 	</form>
-	<button id="btn-save">Save</button>
-	<textarea id="data-output" style="display:block; font-size:12px; width:648px; height:200px;" ><?php print_r(''); ?></textarea>
+	 <form id="create-config-from" action="fidu.php" method="post">
+		<textarea id="module-data" name="module-data"  style="display:none;"><?php  echo $moduleData;?></textarea>
+		<input type="hidden" id="cms-id"  name="cms-id" value="<?php  echo $cmsId;?>"/>
+		<input type="hidden" id="module-name" name="module-name" value="<?php  echo $moduleName;?>"/>
+		<input type="hidden" id="config-value"  name="config-value" value=""/>
+		<input type="hidden" id="create-config-action" name="action" value="create-config" />
+	 </form>
+	
+	<textarea id="data-output" style="display:block; font-size:12px; width:648px; height:50px;" ><?php print_r(''); ?></textarea>
 	<script>
 	(function($){
-		if(json.dataList && json.dataList.length>0){
-			var 	element = $('#tabs'); 
-				panelsArr = [],
+		var element = $('#tabs'),
+			button = $('#btn-save'),
+			title = $('#title-h1');
+		function fillData(){
+			title.html( '数据转换' );
+			
+			var panelsArr = [],
 				navsArr = [],
 				tables = [],
 				panels = element.find('.ui-tabs-panels'),
-				navs = element.find('.ui-tabs-nav'),
-				button = $('#btn-save');
+				navs = element.find('.ui-tabs-nav');
 			json.dataList.forEach(function( item,index ){
 				panelsArr.push('<div class="ui-tabs-panel '+((index==0)?'current':'')+'"></div>');
 				navsArr.push('<dd class="ui-state-default '+((index==0)?'current':'')+'"><a href="javascript:void(0);">'+json.dataNameList[index]+'</a></dd>');
@@ -107,6 +125,7 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 						'action' : $('#action').val()
 					},
 					function( data ) {
+						window.top.postMessage( {type:'html', html:data} , 'http://<?php echo $site_path?>' );
 						$('#data-output').html(data);
 					}
 				);
@@ -140,6 +159,36 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 					//alert( JSON.stringify(jsonObject) );
 				//$('#data-output').html( JSON.stringify(jsonObject) );
 				$("#excelForm").submit();
+			});
+			
+		}
+		
+		function createConfig(){
+			title.html('创建配置文件');
+			
+			var  panels = element.find('.ui-tabs-panels'),
+				navs = element.find('.ui-tabs-nav');
+			panels.html('<div class="ui-tabs-panel  current"></div>');
+			var ele = $(document.createElement('div'));
+			ele.addClass('dataTable');
+			ele.attr('id','data-table-0');
+			panels.find('.ui-tabs-panel').append(ele);
+			ele.handsontable({
+				rowHeaders: true,
+				colHeaders: true,
+				minSpareCols: 1,
+				minSpareRows: 1,
+				contextMenu: true,
+				RemoveRow: true
+			});
+			button.click(function(){
+				var configData = clearEmptyData(ele.data('handsontable').getData());
+				if( configData.length == 0){
+					alert('请先维护好表格！');
+				}else{
+					$('#config-value').val(JSON.stringify(configData));
+					$('#create-config-from').submit();
+				}
 			});
 		}
 		
@@ -210,6 +259,7 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 					//panel.each(function(i,ele){
 					//	$(ele).removeClass('current');
 					//});
+					//title.html( '表 '+$(this).text());
 					nav.each(function(i,ele){
 						$(ele).removeClass('current');
 					});
@@ -220,6 +270,16 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 				});
 			});
 		}
+		
+		if( json.success  && json.dataList && json.dataList.length>0){
+			fillData();
+		}else{
+			if( json.type == 'no-config' ){
+				createConfig();
+			}else if( json.type == 'match' ){
+			}
+		}
+		
 		setTimeout(function(){
 			tabs('tabs');
 		},10);

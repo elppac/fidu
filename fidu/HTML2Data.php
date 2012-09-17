@@ -1,6 +1,6 @@
 <?php
 	require_once 'Common.php';
-	require_once 'fidu/FiduXML.php';
+	require_once 'FiduXML.php';
 	class HTML2Data{
 		var $code;
 		var $config;
@@ -101,7 +101,7 @@
 			
 			//转成RegExp字符串
 			if(!preg_match( '{'.$mainRegExpString.'}',code2Html($this->code),$mainMatches )){
-				echo '匹配出错';
+				throw new Exception("匹配List模板HTML出错");
 				return;
 			}
 			$i = -1;
@@ -156,13 +156,13 @@
 		}
 		function _itemToData($item){
 			$itemTemplate = code2Html($item['itemTemplate']);
-			if(!preg_match_all("/{{.*?}}/",$itemTemplate,$itemKeyMatches)){
-				echo '匹配字段出错';
+			if(!preg_match_all("/{{.*?}}/",$itemTemplate,$itemKeyMatches)){ 
+				throw new Exception("匹配字段出错");
 				return;
 			}
 			$itemRegExpString = code2RegexpString($itemTemplate,'{{','}}');
 			if(!preg_match_all( '{'.$itemRegExpString.'}',code2Html($item['html']),$itemDataMatches )){
-				echo '匹配字段数据出错';
+				throw new Exception("匹配字段数据出错");
 				return;
 			} 
 			//print_r($item['sheetName'] );
@@ -170,11 +170,37 @@
 			//print_r($item);
 		}
 		function toData(){
-			$this->_findListHTML();
-			foreach( $this->projects['items'] as $item ){
-				$itemArray = $this->_itemToData( $item );
+			if( $this->config == null ){
+				return  json_encode( array(
+					'success'=> false,
+					'type' => 'no-config',
+					'info' =>'未找到配置文件'
+				) ) ;
 			}
 			
+			try{
+				$this->_findListHTML();
+			}catch(Exception $e){
+				return json_encode( array(
+					'success'=> false,
+					'type' => 'match',
+					'info' =>$e->getMessage()
+				) ) ;
+			}
+			foreach( $this->projects['items'] as $item ){
+				try{
+					$itemArray = $this->_itemToData( $item );
+				}catch(Exception $e){
+					$success = false;
+					$info = $e->getMessage();
+				}
+			}
+			
+			//print_r($this->projects);
+			
+			
+			$success = true;
+			$info = '';
 			if( !in_array( 'config', $this->dataNameList ) ){
 				$configDataArray = array();
 				foreach( $this->config as $key=>$val ){
@@ -183,12 +209,14 @@
 						code2Html($val)
 					));
 				}
-				
 				array_push( $this->dataNameList, 'config' );
 				array_push( $this->dataList, $configDataArray);
 			}
 			
 			return json_encode( array(
+				'success'=> $success,
+				'info'=>$info,
+				'type'=>'match',
 				'dataNameList'=> $this->dataNameList,
 				'dataList' =>$this->dataList
 			) ) ;

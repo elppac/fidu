@@ -1,3 +1,7 @@
+<?php
+//获取当前的域名:
+$site_path = $_SERVER['SERVER_NAME'];
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,7 +21,7 @@
 <div style="width:800px; float:right;">
 	<iframe src="fidu-enter.php" id="fidu-page" frameborder="0" style="width:800px; height:600px;"></iframe>
 	<input type="hidden" id="module-data"/>
-	<input type="hidden" id="cms-id" value="001"/>
+	<input type="hidden" id="cms-id" value="002"/>
 	<input type="hidden" id="module-name"/>
 </div>
 <script>
@@ -32,12 +36,22 @@ function getModuleInfo(){
 	return obj;
 }
 
+function replaceHtml(newHTML){
+	var dataTextArea = $('#data-html'),
+		moduleName =  $('#module-name').val(),
+		dataHtml = dataTextArea.val();
+	var html = dataHtml.replace(new RegExp( '<!--@begin '+moduleName+'-->[\\s\\S]*?<!--@end '+moduleName+'-->', 'i' ), newHTML);
+	dataTextArea.val(html);
+}
+
 window.addEventListener(
 'message', 
 function(e) {
-	if (e.origin == 'http://www.elppa.cn') {
+	if (e.origin == 'http://<?php echo $site_path?>') {
 		if(e.data.type == 'moduleInfo'){
-			fiduPage[0].contentWindow.postMessage( getModuleInfo() , 'http://www.elppa.cn' );
+			fiduPage[0].contentWindow.postMessage( getModuleInfo() , 'http://<?php echo $site_path?>');
+		}else if( e.data.type == 'html' ){
+			replaceHtml(e.data.html);
 		}
 	}
 } , false); 

@@ -30,11 +30,6 @@ if($upload_file){
 	//echo $path_dir;
 	
 	$accept_overwrite = 1;//是否允许覆盖相同文件
-	// 检查文件大小
-	if ($upload_file_size > $file_size_max) {
-		echo "对不起，你的文件容量大于规定";
-		exit;
-	}
  
 	// 检查读写文件
 	if (file_exists($path_dir . $upload_file_name) && !$accept_overwrite) {
