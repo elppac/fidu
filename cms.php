@@ -23,7 +23,7 @@ $site_path = $_SERVER['SERVER_NAME'];
  <div style="width:800px; margin:0 auto; text-align:left; position:relative;">
 	<textarea id="data-html" style="display:block; font-size:12px; width:100%; height:600px;"></textarea>
 	<button id="btn-builder-nav">生成目录</button>
-	<nav id="fidu-nav-box" class="fidu-nav">
+	<nav id="fidu-nav-box" class="fidu-nav"> 
 	</nav>
 </div>
 <div id="fidu-iframe" title="Fidu" style="display:none;"><iframe scrolling="no" id="fidu-page" frameborder="0" style="width:100%; height:100%;"></iframe></div>

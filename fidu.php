@@ -168,7 +168,7 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 		function createConfig(){
 			title.html('创建配置文件');
 			
-			var  panels = element.find('.ui-tabs-panels'),
+			var  panels = element.find('.ui-tabs-panels'), 
 				navs = element.find('.ui-tabs-nav');
 			panels.html('<div class="ui-tabs-panel  current"></div>');
 			var ele = $(document.createElement('div'));

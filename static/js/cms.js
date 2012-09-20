@@ -25,7 +25,7 @@
 			fiduNavBox = $('#fidu-nav-box'),
 			newList = [];
 		
-		if( fiduList && fiduList.length>0){
+		if( fiduList && fiduList.length>0){ 
 			newList = fiduNameList( fiduList,dataHtml )
 		}else{
 			fiduNavBox.html('未找到可用标签');

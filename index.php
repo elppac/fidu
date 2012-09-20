@@ -3,7 +3,7 @@
 $site_path = $_SERVER['SERVER_NAME'];
 ?>
 	
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <!--[if IE 8]>
 <html xmlns="http://www.w3.org/1999/xhtml" class="ie8"  dir="ltr" lang="en">
 <![endif]-->
