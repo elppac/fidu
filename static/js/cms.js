@@ -43,7 +43,7 @@
 		
 		fiduNavBox.find('li').each( function( index, item ){
 			$(item).click(function( e ){
-				moduleObject.data = getFiduTemplateText(newList[index],dataHtml);
+				moduleObject.data = getFiduTemplateText(newList[index],$('#data-html').val());
 				moduleObject.name = newList[index];
 				$( "#fidu-iframe" ).dialog( "open" );
 				$('#fidu-page').attr( 'src','fidu-enter.php');

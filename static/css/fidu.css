@@ -11,4 +11,10 @@ textarea { font-family:微软雅黑;}
 .ui-tabs .ui-tabs-nav dd.current{  background-color:#fff;}
 .ui-tabs .ui-tabs-nav dd.current a{  border-color:#ddd;line-height:24px; color:#333;}
 
+.fidu-nav{ position: absolute;
+    right: -200px;
+    top: 0;
+    width: 200px;
+    z-index: 10; }
+
 .ctrl{margin-top:10px; margin-bottom:20px;}

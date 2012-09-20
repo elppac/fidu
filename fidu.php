@@ -34,8 +34,10 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 	<link rel="stylesheet" media="screen" href="static/css/fidu.css">
 </head>
  <body>
-
-	<script> 
+	<?php
+		//print_r($moduleData);
+	?>
+	<script>
 		var json = <?php echo $html2data->toData();?>;
 	</script>
 	<h1 id="title-h1"></h1>
@@ -62,7 +64,7 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 		<input type="hidden" id="create-config-action" name="action" value="create-config" />
 	 </form>
 	
-	<textarea id="data-output" style="display:block; font-size:12px; width:648px; height:50px;" ><?php print_r(''); ?></textarea>
+	<textarea id="data-output" style="display:block; font-size:12px; width:648px; height:50px; display:none;" ><?php print_r(''); ?></textarea>
 	<script>
 	(function($){
 		var element = $('#tabs'),
@@ -277,6 +279,7 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 			if( json.type == 'no-config' ){
 				createConfig();
 			}else if( json.type == 'match' ){
+				alert('匹配出错！');
 			}
 		}
 		

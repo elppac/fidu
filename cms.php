@@ -20,10 +20,10 @@ $site_path = $_SERVER['SERVER_NAME'];
 	<link rel="stylesheet" media="screen" href="static/css/themes/base/jquery.ui.all.css">
 </head>
  <body style="text-align:center;">
- <div style="width:800px; margin:0 auto; text-align:left;">
+ <div style="width:800px; margin:0 auto; text-align:left; position:relative;">
 	<textarea id="data-html" style="display:block; font-size:12px; width:100%; height:600px;"></textarea>
 	<button id="btn-builder-nav">生成目录</button>
-	<nav id="fidu-nav-box">
+	<nav id="fidu-nav-box" class="fidu-nav">
 	</nav>
 </div>
 <div id="fidu-iframe" title="Fidu" style="display:none;"><iframe scrolling="no" id="fidu-page" frameborder="0" style="width:100%; height:100%;"></iframe></div>
@@ -36,7 +36,7 @@ var moduleObject = {
 } 
 function replaceHtml(newHTML){
 	var dataTextArea = $('#data-html'),
-		moduleName =  $('#module-name').val(),
+		moduleName = moduleObject.name,
 		dataHtml = dataTextArea.val();
 	var html = dataHtml.replace(new RegExp( '<!--@begin '+moduleName+'-->[\\s\\S]*?<!--@end '+moduleName+'-->', 'i' ), newHTML);
 	dataTextArea.val(html);
@@ -49,6 +49,8 @@ function(e) {
 		if(e.data.type == 'moduleInfo'){
 			$('#fidu-page')[0].contentWindow.postMessage( moduleObject , 'http://<?php echo $site_path?>');
 		}else if( e.data.type == 'html' ){
+			alert('数据保存成功！');
+			$( "#fidu-iframe" ).dialog( "close" );
 			replaceHtml(e.data.html);
 		}
 	}
