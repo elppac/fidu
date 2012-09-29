@@ -7,8 +7,8 @@ $site_path = $_SERVER['SERVER_NAME'];
 <head>
 <title>Fidu Enter</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-	<script src="handsontable/lib/jquery.js"></script>
-	<script src="handsontable/demo/js/json2.min.js"></script>
+	<script src="warpech/lib/jquery.js"></script>
+	<script src="warpech/demo/js/json2.min.js"></script>
 </head>
  <body>
  <div id="output"></div>

@@ -56,11 +56,16 @@ class FiduXml{
 		if( $dataString ==null){
 			return null;
 		}
-		$data = json_decode( $dataString );
-		//print_r($dataString ); 
-		$json = array();
-		foreach( $data as $item ){
-			$json[$item[0]] = $item[1];
+		if (get_magic_quotes_gpc()){
+			$dataString = stripslashes($dataString);
+		}
+		$data = json_decode($dataString);
+		 
+		$json = array(); 
+		if( is_array($data) ){
+			foreach( $data as $item ){
+				$json[$item[0]] = $item[1];
+			}
 		}
 		return $json;
 	}
@@ -87,6 +92,7 @@ class FiduXml{
 		$nameElement -> appendChild( $nameNode );
 		
 		$dataElement = $this->doc -> createElement( 'data' );
+		
 		$dataNode = $this->doc -> createCDATASection($data);
 		$dataElement -> appendChild( $dataNode );
 		

@@ -22,15 +22,15 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 <head>
 <title>Fidu</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-	<script src="handsontable/lib/jquery.js"></script>
-	<script src="handsontable/jquery.handsontable.js"></script>
-	<script src="handsontable/lib/bootstrap-typeahead.js"></script>
-	<script src="handsontable/lib/jquery.autoresize.js"></script>
-	<script src="handsontable/lib/jQuery-contextMenu/jquery.contextMenu.js"></script>
-	<script src="handsontable/lib/jQuery-contextMenu/jquery.ui.position.js"></script>
-	<script src="handsontable/demo/js/json2.min.js"></script>
-	<link rel="stylesheet" media="screen" href="handsontable/lib/jQuery-contextMenu/jquery.contextMenu.css">
-	<link rel="stylesheet" media="screen" href="handsontable/jquery.handsontable.css">
+	<script src="warpech/lib/jquery.js"></script>
+	<script src="warpech/jquery.handsontable.js"></script>
+	<script src="warpech/lib/bootstrap-typeahead.js"></script>
+	<script src="warpech/lib/jquery.autoresize.js"></script>
+	<script src="warpech/lib/jQuery-contextMenu/jquery.contextMenu.js"></script>
+	<script src="warpech/lib/jQuery-contextMenu/jquery.ui.position.js"></script>
+	<script src="warpech/demo/js/json2.min.js"></script>
+	<link rel="stylesheet" media="screen" href="warpech/lib/jQuery-contextMenu/jquery.contextMenu.css">
+	<link rel="stylesheet" media="screen" href="warpech/jquery.handsontable.css">
 	<link rel="stylesheet" media="screen" href="static/css/fidu.css">
 </head>
  <body>
@@ -38,7 +38,8 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 		//print_r($moduleData);
 	?>
 	<script>
-		var json = <?php echo $html2data->toData();?>;
+		var json = <?php echo $html2data->toData();?>,
+			moduleName = '<?php echo $moduleName?>';
 	</script>
 	<h1 id="title-h1"></h1>
 	<div class="ui-tabs ui-green" id="tabs">
@@ -65,13 +66,13 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 	 </form>
 	
 	<textarea id="data-output" style="display:block; font-size:12px; width:648px; height:50px; display:none;" ><?php print_r(''); ?></textarea>
-	<script>
+<script>
 	(function($){
 		var element = $('#tabs'),
 			button = $('#btn-save'),
 			title = $('#title-h1');
 		function fillData(){
-			title.html( '数据转换' );
+			title.html( '数据转换 - '+moduleName );
 			
 			var panelsArr = [],
 				navsArr = [],
@@ -94,18 +95,19 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 				$(item).append(ele);
 				$(item).addClass('current');
 				//$(item).css('visibility','hidden');
-				
-				ele.handsontable({
-					//rows: data.length,
-					//cols: data[0].length,
-					rowHeaders: true,
-					colHeaders: true,
-					minSpareCols: 1,
-					minSpareRows: 1,
-					contextMenu: true,
-					RemoveRow: true
-				});
-				ele.handsontable("loadData", data);
+				setTimeout(function(){
+					ele.handsontable({
+						//rows: data.length,
+						//cols: data[0].length,
+						//rowHeaders: true,
+						//colHeaders: true,
+						minSpareCols: 1,
+						minSpareRows: 1,
+						contextMenu: true//,
+						//RemoveRow: true
+					});
+					ele.handsontable("loadData", data);
+				},200)
 				tables.push(ele);
 			});
 			
@@ -119,15 +121,15 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 				/* Send the data using post and put the results in a div */
 				$.post( url, 
 					{
-						'moduleName' : '<?php echo $moduleName; ?>',
-						'moduleId' : '<?php echo $cmsId; ?>',
+						'moduleName' : 'Featured Products',
+						'moduleId' : '002',
 						'tableData':$('#table-data').val(),
 						'tableName':$('#table-name').val(),
 						'table' : $('#table').val(),
 						'action' : $('#action').val()
 					},
 					function( data ) {
-						window.top.postMessage( {type:'html', html:data} , 'http://<?php echo $site_path?>' );
+						window.top.postMessage( {type:'html', html:data} , 'http://www.elppa.cn' );
 						$('#data-output').html(data);
 					}
 				);
@@ -166,7 +168,7 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 		}
 		
 		function createConfig(){
-			title.html('创建配置文件');
+			title.html('创建配置文件 - '+moduleName);
 			
 			var  panels = element.find('.ui-tabs-panels'), 
 				navs = element.find('.ui-tabs-nav');
@@ -175,14 +177,16 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 			ele.addClass('dataTable');
 			ele.attr('id','data-table-0');
 			panels.find('.ui-tabs-panel').append(ele);
-			ele.handsontable({
-				rowHeaders: true,
-				colHeaders: true,
-				minSpareCols: 1,
-				minSpareRows: 1,
-				contextMenu: true,
-				RemoveRow: true
-			});
+			setTimeout(function(){
+				ele.handsontable({
+					//rowHeaders: true,
+					//colHeaders: true,
+					minSpareCols: 1,
+					minSpareRows: 1,
+					contextMenu: true,
+					RemoveRow: true
+				});
+			},200);
 			button.click(function(){
 				var configData = clearEmptyData(ele.data('handsontable').getData());
 				if( configData.length == 0){
@@ -283,10 +287,10 @@ $html2data = new HTML2Data( $moduleData,$moduleName,$cmsId );
 			}
 		}
 		
-		setTimeout(function(){
+		//setTimeout(function(){
 			tabs('tabs');
-		},10);
+		//},10);
 	})(jQuery);
 	</script>
- </body>
+</body>
 </html>

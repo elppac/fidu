@@ -1,6 +1,24 @@
 <?php
 //获取当前的域名:
 $site_path = $_SERVER['SERVER_NAME'];
+/* $url = $_POST['url'];
+if(isset($url) && $url!=''){
+	echo $url;
+	try{
+		//$ch = curl_init(); 
+		//curl_setopt($ch, CURLOPT_URL, $url); 
+		//curl_setopt($ch, CURLOPT_HEADER, TRUE); 
+		//curl_setopt($ch, CURLOPT_NOBODY, TRUE); // remove body 
+		//curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+		//$head = curl_exec($ch); 
+		$httpCode = get_remote_data($ch, CURLINFO_HTTP_CODE); 
+		//curl_close($ch);
+		//echo $head;
+		echo $httpCode;
+	}catch(Exception $e){
+		
+	}
+} */
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

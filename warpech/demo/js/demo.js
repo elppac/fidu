@@ -8,7 +8,7 @@ $(function () {
     $("#example1grid").handsontable({
       rows: 5,
       cols: 5,
-      minSpareCols: 1, //always keep at least 1 spare row at the right
+      minSpareCols: 1, //always keep at least 1 spare col at the right
       minSpareRows: 1, //always keep at least 1 spare row at the bottom
       contextMenu: true
     });
@@ -60,23 +60,12 @@ $(function () {
         },
         {
           match: function (row, col, data) {
-            return (col === 0 && data()[row][col]); //if it is first column
+            return (row === 0 && data()[row][col]); //if it is first row with data
           },
           icon: {
             src: "http://upload.wikimedia.org/wikipedia/commons/7/75/Information-silk.png",
             click: function (row, col, data, icon) {
               alert("The icon in row " + row + " and column " + col + " was clicked.");
-            }
-          }
-        },
-        {
-          match: function (row, col, data) {
-            return (col === 1 && data()[row][col]); //if it is first column
-          },
-          icon: {
-            src: "http://upload.wikimedia.org/wikipedia/commons/7/75/Information-silk.png",
-            click: function (row, col, data, icon) {
-              alert("The aicon in row " + row + " and column " + col + " was clicked." + icon);
             }
           }
         }
@@ -165,7 +154,7 @@ $(function () {
       cols: 40,
       rowHeaders: true,
       colHeaders: true,
-      minSpareCols: 1, //always keep at least 1 spare row at the right
+      minSpareCols: 1, //always keep at least 1 spare col at the right
       minSpareRows: 1 //always keep at least 1 spare row at the bottom
     });
 
@@ -366,4 +355,8 @@ $(function () {
     $this.find('a[href~=#' + $this.attr('id').replace('container', '') + ']').addClass('active');
   });
   examplesList.remove();
+
+  if (window.location.hostname === 'warpech.github.com') {
+    $('#domainNotice').show();
+  }
 });

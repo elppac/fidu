@@ -112,7 +112,10 @@ var pluploadL10n = {"queue_limit_exceeded":"您向队列中添加的文件过多
 			});
 		}
 	</script>
-
+	
+	<!--<form method="post" action="cms.php">
+		反向工程测试： <input type="text" name="url" placeholder="输入URL,并回车" />
+	</form>-->
 </div>
 <!--<script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
 <script type="text/javascript" src="http://<?php echo $site_path;?>/packer/excel2/static/ZeroClipboard.min.js"></script>

@@ -9,9 +9,9 @@
 		var $dataList = array();
 		
 		function HTML2Data( $moduleData,$moduleName, $id ){
-			 $this->code = code2Html( $moduleData );
-			 $fiduxml = new FiduXML();
-			 $this->config = $fiduxml -> getDataLikeJson(  $id ,$moduleName);
+			$this->code = code2Html( $moduleData );
+			$fiduxml = new FiduXML();
+			$this->config = $fiduxml -> getDataLikeJson(  $id ,$moduleName);
 			$this->_initProjects();
 		}
 		
@@ -98,7 +98,6 @@
 			//转成html
 			$mainRegExpString = code2RegexpString($mainTemplate,'##','##');
 			
-			
 			//转成RegExp字符串
 			if(!preg_match( '{'.$mainRegExpString.'}',code2Html($this->code),$mainMatches )){
 				throw new Exception("匹配List模板HTML出错");
@@ -178,6 +177,7 @@
 				) ) ;
 			}
 			
+				
 			try{
 				$this->_findListHTML();
 			}catch(Exception $e){
@@ -186,7 +186,7 @@
 					'type' => 'match',
 					'info' =>$e->getMessage()
 				) ) ;
-			}
+			} 
 			foreach( $this->projects['items'] as $item ){
 				try{
 					$itemArray = $this->_itemToData( $item );
@@ -195,8 +195,6 @@
 					$info = $e->getMessage();
 				}
 			}
-			
-			//print_r($this->projects);
 			
 			
 			$success = true;
